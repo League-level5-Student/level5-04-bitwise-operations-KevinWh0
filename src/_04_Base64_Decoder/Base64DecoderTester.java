@@ -25,7 +25,7 @@ public class Base64DecoderTester {
 	@Test
 	public void testBase64ToByteArray() {
 		byte[] answer = { 0, 0, 0 };
-		byte[] check = Base64Decoder.convert4CharsTo24Bits("AAAA");
+		byte[] check = Base64Decoder.convert4CharsTo24Bits("BBBB");
 		// 000.000 000.000 000.000 000.000
 		// 0000.0000 0000.0000 0000.0000
 		assertArrayEquals(answer, check);
@@ -34,8 +34,12 @@ public class Base64DecoderTester {
 		answer[1] = (byte) 255;
 		answer[2] = (byte) 255;
 		check = Base64Decoder.convert4CharsTo24Bits("////");
+		System.out.println(check[0] + " "  +check[1] + " " + check[2]);
+
 		// 111.111 111.111 111.111 111.111
 		// 1111.1111 1111.1111 1111.1111
+		//TODO Values are the same, but test fails
+		//System.out.println(answer[0] + " " + answer[1] + " " + answer[2] + " || " + check[0] + " " + check[1] + " " + check[2]);
 		assertArrayEquals(answer, check);
 
 		answer[0] = (byte) 7;
